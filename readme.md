@@ -86,6 +86,7 @@ AND 	 emp_no < 15000
 ;
 ```
 -- 사원중에 입사한 일자가 '19850101' ~ '19860101'인 사원들의 정보를 출력해 보자.
+
 -- 날짜를 처리하는 함수를 사용해야한다.
 ```
 -- DATE_FORMAT(<field 명>, '내가 보고자하는 날짜 형식')
@@ -121,8 +122,11 @@ WHERE  hire_date BETWEEN '1985-01-01' AND '1986-01-01'
 ;
 ```
 -- 나온 결과를 정렬을 해서 확인해보자.
+
 -- 사원중에 입사한 일자가 '19850101' ~ '19860101'인 사원들의 정보
+
 -- 최근에 입사한 입사자가 맨위로 오도록 출력해 보세요.
+
 -- ORDER BY <field명> ASC(1->10) or DESC(10->1)
 ```
 SELECT	*
@@ -149,7 +153,9 @@ WHERE  DATE_FORMAT(hire_date, '%Y') = '1990'
 ;
 ```
 -- 사원들 중에서 성이 'Genin'이거나 'Facello'인 사원의 정보를 출력해보자.
+
 -- OR 연산자
+
 -- 조건 or 조건: 둘중에 하나만 만족해도 출력되는 데이터 
 ```
 SELECT *
@@ -159,8 +165,11 @@ OR  	 last_name = 'Genin'
 ;
 ```
 -- IN 연산자를 사용해보자.
+
 -- OR와 동일한 결과를 나타낸다.
+```
 -- <field명> IN ('A값', 'B값')
+```
 -- A값 또는 B값을 만족하는 데이터를 가져온다.
 ```
 SELECT *
@@ -169,9 +178,11 @@ WHERE  last_name IN('Genin', 'Facello')
 ;
 ```
 -- Alias(별칭)
+```
 -- <field명> as 사용하고 싶은 이름
 -- <field명> 사용하고 싶은 이름
 -- <field명> 이름에 공백이 있을겨우에는 ''로 묶어준다.
+```
 ```
 SELECT last_name AS '이 름', first_name AS 성
 FROM	 employees
@@ -194,12 +205,14 @@ ORDER BY emp.hire_date DESC
 ```
 -- 사원중에 이름이 's'로 시작하는 사원의 정보를 출력해보자.
 -- LIKE 연산자
+```
 -- <field명> LIKE 's' : s를 포함하는 데이터
 -- <field명> LIKE 's%' : s로 시작하는 데이터
 -- <field명> LIKE '%s' : s로 끝나는 데이터
 -- <field명> LIKE '%s%' : s를 중간에 포함하는 데이터
 -- <field명> LIKE '__s' : 3글자인데 2글자를 모르면 _로 채우고 조회한다.
 -- wild card : %
+```
 ```
 SELECT	*
 FROM	 	board
@@ -245,8 +258,10 @@ OR 		title LIKE '%Staff'
 -- ;
 
 -- NULL : 값이 없다
+```
 -- <field명> IS NULL : 값이 없을 경우
 -- <field명> IS NOT NULL : 값이 NULL이 아닐 경우
+```
 -- 사원중에서 salary가 NULL이 아닌 사원의 정보를 가져와 보자.
 ```
 SELECT	*
