@@ -11,12 +11,15 @@ USE employees;
 SELECT <FIELD명>, <FIELD 명>, ...
 FROM 	 <TABLE 명>
 
+```sql
 # SELECT = 테이블에서 가져온다. * = 전체
 SELECT *
 FROM 	 employees;
 
 # 존재하는 테이블 목록 보기
 SHOW TABLES;
+```
+
 
 -- 사원 테이블에서 사원들의 이름만 가져와 보자.
 SELECT first_name, last_name
