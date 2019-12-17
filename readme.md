@@ -87,6 +87,7 @@ AND 	 emp_no < 15000
 ```
 -- 사원중에 입사한 일자가 '19850101' ~ '19860101'인 사원들의 정보를 출력해 보자.
 -- 날짜를 처리하는 함수를 사용해야한다.
+```
 -- DATE_FORMAT(<field 명>, '내가 보고자하는 날짜 형식')
 -- DATE_FORMAT(<field 명>, '%Y') : 연도를 출력
 -- DATE_FORMAT(<field 명>, '%M') : 월을 출력
@@ -95,6 +96,7 @@ AND 	 emp_no < 15000
 -- DATE_FORMAT(<field 명>, '%Y-%M-%D') :2019-12-17
 -- DATE_FORMAT(<field 명>, '%Y%M%D %H-%i-%p') : 20191217 14-12 pm (24)
 -- DATE_FORMAT(<field 명>, '%Y%M%D %h-%i-%p') : 20191217 02-12 pm (12)
+```
 ```
 SELECT DATE_FORMAT(hire_date, '%Y%M%D')
 FROM 	 employees;
