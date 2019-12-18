@@ -473,29 +473,29 @@ GROUP BY	MOD(DATE_FORMAT(hire_date, '%Y'),2)
 --   WHEN <대상이 되는 값이 가질 값> THEN <내용을 작성>
 -- END as <표현하고자 하는 필드명을 적어준다.>
 ```
-SELECT	CASE MOD(DATE_FORMAT(hire_date, '%Y'),2)
-				WHEN 0 THEN '짝수년도'
-				WHEN 1 THEN '홀수년도'
-			END AS '년도',
-			COUNT(employee_id) AS 사원수
-FROM		hr_employees
-GROUP BY	MOD(DATE_FORMAT(hire_date, '%Y'),2)
+SELECT	 CASE MOD(DATE_FORMAT(hire_date, '%Y'),2)
+	 WHEN 0 THEN '짝수년도'
+	 WHEN 1 THEN '홀수년도'
+	 END AS '년도',
+	 COUNT(employee_id) AS 사원수
+FROM	 hr_employees
+GROUP BY MOD(DATE_FORMAT(hire_date, '%Y'),2)
 ;
 ```
 -- 집계함수 : SUM(<field명>)
 -- 값을 합칠때 사용
 ```
 SELECT	SUM(salary)
-FROM 		hr_employees
+FROM 	hr_employees
 ;
 ```
 -- 1998년 이후에 입사한 사람들을 대상으로 직무별 급여의 합을 구하시오.
 -- 정렬은 급여가 많은 직무별로 해주세요.
 ```
-SELECT 	job_id, SUM(salary) AS salary
-FROM 		hr_employees
-WHERE		DATE_FORMAT(hire_date, '%Y') >= '1998'
-GROUP BY	job_id
+SELECT 	 job_id, SUM(salary) AS salary
+FROM 	 hr_employees
+WHERE	 DATE_FORMAT(hire_date, '%Y') >= '1998'
+GROUP BY job_id
 ORDER BY SUM(salary) DESC
 ;
 ```
@@ -564,28 +564,28 @@ SELECT SYSDATE();
 -- 현재 근무하는 사원의 재직기간을 나타내보시오.
 ```
 SELECT	employee_id, FLOOR(TIMESTAMPDIFF(MONTH,hire_date,SYSDATE())/12) AS years
-FROM 		hr_employees
+FROM 	hr_employees
 ;
 ```
 ```
 SELECT	employee_id, FLOOR(DATEDIFF(SYSDATE(),hire_date)/365) AS years
-FROM 		hr_employees
+FROM 	hr_employees
 ;
 ```
 ```
 SELECT	employee_id, FLOOR(TIMESTAMPDIFF(DAY,hire_date,SYSDATE())/365) AS years
-FROM 		hr_employees
+FROM 	hr_employees
 ;
 ```
 ```
 SELECT 	*
-FROM 		hr_employees
-WHERE		employee_id = 100
+FROM 	hr_employees
+WHERE	employee_id = 100
 ;
 ```
 ```
 SELECT 	*
-FROM 		hr_job_history;
+FROM 	hr_job_history;
 ```
 -- 1999년도에 입사한 사람들을 아래와 같이 출력해 봅시다.
 -- [결과]
@@ -594,36 +594,36 @@ FROM 		hr_job_history;
 -- 하반기		ㅣSA_REPㅣ 20
 ```
 SELECT 	*	
-FROM 		hr_employees
+FROM 	hr_employees
 WHERE 	DATE_FORMAT(hire_date, '%Y') = '1999'
 ;
 ```
 ```
 SELECT 	*	
-FROM 		hr_employees
+FROM 	hr_employees
 WHERE 	YEAR(hire_date) = '1999'
 ;
 ```
 ```
 SELECT 	TRUNCATE(MONTH(hire_date)/7,0)
-FROM 		hr_employees
+FROM 	hr_employees
 WHERE 	YEAR(hire_date) = '1999'
 ;
 ```
 ```
-SELECT 	case TRUNCATE(MONTH(hire_date)/7,0)
-				when 0 then '상반기'
-				when 1 then '하반기'
-			END AS '상하반기',
-			job_id AS '직무',
-			COUNT(employee_id) AS '사원수'	
-FROM 		hr_employees
-WHERE 	YEAR(hire_date) = '1999'
+SELECT 	 case TRUNCATE(MONTH(hire_date)/7,0)
+	 when 0 then '상반기'
+	 when 1 then '하반기'
+	 END AS '상하반기',
+	 job_id AS '직무',
+	 COUNT(employee_id) AS '사원수'	
+FROM 	 hr_employees
+WHERE 	 YEAR(hire_date) = '1999'
 GROUP BY case TRUNCATE(MONTH(hire_date)/7,0)
-				when 0 then '상반기'
-				when 1 then '하반기'
-			END,
-			job_id
+	 when 0 then '상반기'
+	 when 1 then '하반기'
+	 END,
+	 job_id
 ;
 ```
 -- TRUNCATE() 함수 : 보여줄 소숫점 자리수까지 보여주는 함수
@@ -648,12 +648,12 @@ RTRIM(str); -- 오른쪽 공백 제거
 -- 'IT_PROG'나 'ST_MAN'이 아니면 '사원'으로 출력하도록 퀘리문을 작성해 보세요.
 ```
 SELECT	*,
-			CASE job_id
-				WHEN 'IT_PROG' THEN '프로그래머'
-				WHEN 'ST_MAN' THEN '매니저'
-				ELSE '사원'
-			END AS 직무
-FROM 		hr_employees
+	CASE job_id
+	WHEN 'IT_PROG' THEN '프로그래머'
+	WHEN 'ST_MAN' THEN '매니저'
+	ELSE '사원'
+	END AS 직무
+FROM    hr_employees
 ;
 ```
 -- if 함수 사용해보기
@@ -663,8 +663,8 @@ FROM 		hr_employees
 -- 단순하게 처리해야 하는 부분은 if()로 처리하는 것이 좋다.
 ```
 SELECT 	*, if(job_id='IT_PROG','프로그래머',
-					IF(job_id='ST_MAN','매니저','사원')) 직무
-FROM 		hr_employees
+	IF(job_id='ST_MAN','매니저','사원')) 직무
+FROM 	hr_employees
 ;
 ```
 -- 사원중에서 급여를 가장 많이 받는 사람의 급여는 얼마일까요?
@@ -672,15 +672,15 @@ FROM 		hr_employees
 -- MIN(<field명>) : field의 최솟값
 ```
 SELECT 	MAX(salary)
-FROM 		hr_employees
+FROM 	hr_employees
 ;
 ```
 -- 최고 급여 대비 본인연봉을 확인해 보자.
 ```
-SELECT 	employee_id,
-			salary,
-			MAX(salary) OVER()
-FROM 		hr_employees
+SELECT 	 employee_id,
+	 salary,
+	 MAX(salary) OVER()
+FROM 	 hr_employees
 ORDER BY salary DESC
 ;
 ```
@@ -690,55 +690,55 @@ ORDER BY salary DESC
 -- 영업직무 : SA%
 ```
 SELECT 	employee_id,
-			hire_date,
-			MAX(hire_date)
-FROM 		hr_employees
-WHERE		job_id LIKE 'SA%'
+	hire_date,
+	MAX(hire_date)
+FROM 	hr_employees
+WHERE	job_id LIKE 'SA%'
 ;
 ```
 ```
 SELECT 	employee_id,
-			last_name,
-			hire_date,
-			job_id
-FROM		hr_employees
-WHERE		job_id LIKE 'SA%'
-AND 		hire_date = (SELECT 	MAX(hire_date) FROM hr_employees)
+	last_name,
+	hire_date,
+	job_id
+FROM	hr_employees
+WHERE	job_id LIKE 'SA%'
+AND 	hire_date = (SELECT MAX(hire_date) FROM hr_employees)
 ;
 ```
 -- rank() : 순위를 표현할 때 사용하는 함수
 -- 영업부서에 속하는 사원들을 대상으로 급여가 적은 순위를 나타내 보세요.
 ```
 SELECT 	employee_id,
-			salary,
-			RANK() over(ORDER BY salary ASC) AS salary_ranking
-FROM		hr_employees
+	salary,
+	RANK() over(ORDER BY salary ASC) AS salary_ranking
+FROM	hr_employees
 ;
 ```
 -- DENSE RANK() : 순위가 동률이라도 건너뛰지 않고 순서를 매겨준다.
 ```
 SELECT 	employee_id,
-			salary,
-			dense_RANK() over(ORDER BY salary ASC) AS salary_ranking
-FROM		hr_employees
+	salary,
+	dense_RANK() over(ORDER BY salary ASC) AS salary_ranking
+FROM	hr_employees
 ;
 ```
 -- 입사한지 3년 이상 되는 사원들의 연봉 상위 5명의 정보를 출력해주세요.
 ```
 SELECT 	*
-FROM		(SELECT 	salary,
-						RANK() over(ORDER BY salary DESC) AS RANK
-			FROM 		hr_employees
-			WHERE		TIMESTAMPDIFF(MONTH, hire_date, SYSDATE()) >= 36
-			) AS emp
+FROM	(SELECT salary,
+	RANK() over(ORDER BY salary DESC) AS RANK
+	FROM 	hr_employees
+	WHERE	TIMESTAMPDIFF(MONTH, hire_date, SYSDATE()) >= 36
+	) AS emp
 WHERE 	RANK <= 5
 ;
 ```
 -- 현재 사원들 중에서 입사일이 현재시점과 가장 가까운 순으로 순위를 매겨주세요.
 ```
 SELECT 	employee_id,
-			hire_date,
-			RANK() over(ORDER BY hire_date DESC)
-FROM		hr_employees
+	hire_date,
+	RANK() over(ORDER BY hire_date DESC)
+FROM	hr_employees
 ;
 ```
