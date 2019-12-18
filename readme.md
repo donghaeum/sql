@@ -1,26 +1,29 @@
 # SQL이란
 
-#### Strutured Query Language(구조화된 질의어)
+##### Strutured Query Language(구조화된 질의어)
 
 기본적인 쿼리문은 문장이 끝나면 반드시 ';'를 붙여줘야 한다.
 
 사용할 데이터베이스를 미리 지정해준다.
 ###### ctrl + f9
-내가 employees 데이터베이스를 사용하겠다.
-###### USE employees;
 
+내가 employees 데이터베이스를 사용하겠다.
+```
+USE employees;
+```
 * 기본적인 쿼리문을 사용해보자.
 ```
 SELECT <FIELD명>, <FIELD 명>, ...
 FROM 	 <TABLE 명>
 ```
-
--- SELECT = 테이블에서 가져온다. * = 전체
+* SELECT = 테이블에서 가져온다. 
 ```
 SELECT *
 FROM 	 employees;
 ```
--- 존재하는 테이블 목록 보기
+' * ' = 전체를 의미한다.
+
+* 존재하는 테이블 목록 보기
 ```
 SHOW TABLES;
 ```
