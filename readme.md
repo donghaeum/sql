@@ -6,6 +6,8 @@
 사용할 데이터베이스를 미리 지정해준다.
 ###### ctrl + f9
 
+## Employees DB
+
 내가 employees 데이터베이스를 사용하겠다.
 ```
 USE employees;
@@ -368,7 +370,7 @@ WHERE		DATE_FORMAT(hire_date, '%Y') ='1999'
 GROUP BY	DATE_FORMAT(hire_date, '%m')
 ;
 ```
-## Test
+## Test DB
 
 ### 집계함수 : AVG(<field명>)
 ```
