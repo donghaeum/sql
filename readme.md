@@ -1,5 +1,4 @@
 # SQL이란
-
 ##### Strutured Query Language(구조화된 질의어)
 
 기본적인 쿼리문은 문장이 끝나면 반드시 ';'를 붙여줘야 한다.
@@ -29,35 +28,38 @@ SHOW TABLES;
 ```
 
 #### SELECT, FROM
--- 사원 테이블에서 사원들의 이름만 가져와 보자.
+
+* 사원 테이블에서 사원들의 이름만 가져와 보자.
 ```
 SELECT first_name, last_name
 FROM 	 employees;
 ```
--- 사원 테이블에서 이름이 'Elvis'인 사람의 정보를 가져와 보자.
--- WHERE 절
--- WHERE 조건 : 조건에 만족하는 데이터만 가져온다.
+#### WHERE 절
+#### WHERE 조건 : 조건에 만족하는 데이터만 가져온다.
+
+* 사원 테이블에서 이름이 'Elvis'인 사람의 정보를 가져와 보자.
+
 ```where
 SELECT *
 FROM 	 employees
 WHERE  first_name = 'Elvis'
 ;
 ```
--- 사원 테이블에서 성이 'Simmel'인 사람의 정보를 가져와 보자.
+* 사원 테이블에서 성이 'Simmel'인 사람의 정보를 가져와 보자.
 ```
 SELECT *
 FROM 	 employees
 WHERE  last_name = 'Simmel'
 ;
 ``` 
--- 사원중에서 사번이 20000번 이하인 사원들의 정보를 출력해보자.
--- >=, <, <=, <>(같지 않다), !=(같지 않다)
+* 사원중에서 사번이 20000번 이하인 사원들의 정보를 출력해보자.
 ```
 SELECT *
 FROM 	 employees
 WHERE  emp_no <= 20000
 ;
 ```
+##### >=, <, <=, <>(같지 않다), !=(같지 않다)
 -- 사원중에서 사번이 20000번 이상이고, 20100번 이하인 사원들의 이름과 성별을 출력해보자.
 -- AND 연산자 : 조건을 추가할때, 또는 A AND B의 조건을 다 만족할때
 ```
