@@ -27,14 +27,14 @@ FROM 	 employees;
 SHOW TABLES;
 ```
 
-#### SELECT, FROM
+### SELECT, FROM
 
 * 사원 테이블에서 사원들의 이름만 가져와 보자.
 ```
 SELECT first_name, last_name
 FROM 	 employees;
 ```
-#### WHERE 절
+### WHERE 절
 #### WHERE 조건 : 조건에 만족하는 데이터만 가져온다.
 
 * 사원 테이블에서 이름이 'Elvis'인 사람의 정보를 가져와 보자.
