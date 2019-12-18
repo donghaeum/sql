@@ -1,12 +1,13 @@
 # SQL이란
 
-> Strutured Query Language(구조화된 질의어)
-> 기본적인 쿼리문은 문장이 끝나면 반드시 ';'를 붙여줘야 한다.
+#### Strutured Query Language(구조화된 질의어)
 
--- 사용할 데이터베이스를 미리 지정해준다.
--- ctrl + f9
--- 내가 employees 데이터베이스를 사용하겠다.
--- USE employees;
+기본적인 쿼리문은 문장이 끝나면 반드시 ';'를 붙여줘야 한다.
+
+사용할 데이터베이스를 미리 지정해준다.
+ctrl + f9
+내가 employees 데이터베이스를 사용하겠다.
+USE employees;
 
 -- 기본적인 쿼리문을 사용해보자.
 ```
