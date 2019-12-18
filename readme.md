@@ -5,11 +5,11 @@
 기본적인 쿼리문은 문장이 끝나면 반드시 ';'를 붙여줘야 한다.
 
 사용할 데이터베이스를 미리 지정해준다.
-ctrl + f9
+###### ctrl + f9
 내가 employees 데이터베이스를 사용하겠다.
-USE employees;
+###### USE employees;
 
--- 기본적인 쿼리문을 사용해보자.
+* 기본적인 쿼리문을 사용해보자.
 ```
 SELECT <FIELD명>, <FIELD 명>, ...
 FROM 	 <TABLE 명>
@@ -46,7 +46,7 @@ SELECT *
 FROM 	 employees
 WHERE  last_name = 'Simmel'
 ;
-```
+``` 
 -- 사원중에서 사번이 20000번 이하인 사원들의 정보를 출력해보자.
 -- >=, <, <=, <>(같지 않다), !=(같지 않다)
 ```
