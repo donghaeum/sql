@@ -328,26 +328,26 @@ ORDER BY	from_date DESC
 ##### ' * '가 들어가도 동일한 결과를 나타낸다
 ```
 SELECT	COUNT(*)
-FROM 	 	employees
-WHERE		emp_no = '10003' 
+FROM 	employees
+WHERE	emp_no = '10003' 
 ;
 ```
 ```
 SELECT	COUNT(*)
-FROM 	 	dept_emp
-WHERE		dept_no = 'd004' 
+FROM 	dept_emp
+WHERE	dept_no = 'd004' 
 ;
 ```
 ```
 SELECT	COUNT(*) AS 사원 수
-FROM 	 	dept_emp
-WHERE		dept_no = 'd004' 
+FROM 	dept_emp
+WHERE	dept_no = 'd004' 
 ;
 ```
 ```
 SELECT	COUNT(*) 사원수
-FROM 	 	dept_emp
-WHERE		dept_no IN('d004', 'd002') 
+FROM 	dept_emp
+WHERE	dept_no IN('d004', 'd002') 
 ;
 ```
 #### group by : 부서나 그룹별로 데이터를 출력할 때 사용
