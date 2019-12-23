@@ -351,10 +351,11 @@ WHERE	dept_no IN('d004', 'd002')
 ;
 ```
 #### group by : 부서나 그룹별로 데이터를 출력할 때 사용
-#### select <field명>, ...
-#### from   <table명>
-#### group by <~별로 사용할 field명>
-
+```
+select <field명>, ...
+from   <table명>
+group by <~별로 사용할 field명>
+```
 * 입사년도 별로 사원의 수를 출력하는 쿼리문을 작성해보세요.
 ```
 SELECT		DATE_FORMAT(hire_date, '%Y'), COUNT(*) AS 사원수
@@ -521,7 +522,7 @@ CONCAT(str1,' ',str2)
 SELECT CONCAT("이",' ','민지')
 SELECT CONCAT("이",'민지')
 ```
--- 사원의 이름을 출력해보자.
+* 사원의 이름을 출력해보자.
 ```
 SELECT CONCAT(first_name,' ',last_name)
 FROM   hr_employees
@@ -549,7 +550,7 @@ SELECT YEAR('2019-12-18 13:07:07');
 SELECT DATEDIFF('2020-12-18 13:07:07', '2019-12-18 13:07:07');
 ```
 #### TIMESTAMPDIFF(단위, smallDate1, maxDate2)
-* 단위
+단위
 * SECOND : 초
 * MINUTE : 분
 * HOUR	 : 시
@@ -559,11 +560,11 @@ SELECT DATEDIFF('2020-12-18 13:07:07', '2019-12-18 13:07:07');
 ```
 SELECT TIMESTAMPDIFF(YEAR, '2019-12-18 13:07:07', '2022-12-18 13:07:07');
 ```
--- 결과 : 3
+결과 : 3
 ```
 SELECT SYSDATE();
 ```
--- 현재 근무하는 사원의 재직기간을 나타내보시오.
+* 현재 근무하는 사원의 재직기간을 나타내보시오.
 ```
 SELECT	employee_id, FLOOR(TIMESTAMPDIFF(MONTH,hire_date,SYSDATE())/12) AS years
 FROM 	hr_employees
@@ -589,7 +590,7 @@ WHERE	employee_id = 100
 SELECT 	*
 FROM 	hr_job_history;
 ```
--- 1999년도에 입사한 사람들을 아래와 같이 출력해 봅시다.
+* 1999년도에 입사한 사람들을 아래와 같이 출력해 봅시다.
 -- [결과]
 -- 반기(상,하) ㅣ직무	ㅣ입사자
 -- 상반기		ㅣSA_REPㅣ	10
@@ -628,9 +629,12 @@ GROUP BY case TRUNCATE(MONTH(hire_date)/7,0)
 	 job_id
 ;
 ```
+### TRUNCATE
+```
 -- TRUNCATE() 함수 : 보여줄 소숫점 자리수까지 보여주는 함수
 -- TRUNCATE(실수, 2) : 소숫점 둘째자리까지 보여준다.
 -- TRUNCATE(실수, 0) : 정수로 보여준다.
+```
 ```
 SELECT TRUNCATE(10.2312345,2);
 SELECT TRUNCATE(10.2312345,0);
