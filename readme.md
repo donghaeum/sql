@@ -78,23 +78,23 @@ AND	 emp_no <= 20100
 
 ##### A 이상 B 이하인 데이터를 가져오는 방법
 ```
-SELECT emp_no, first_name, gender
-FROM	 employees
-WHERE  emp_no BETWEEN 20000 AND 20100
+SELECT 	emp_no, first_name, gender
+FROM	employees
+WHERE  	emp_no BETWEEN 20000 AND 20100
 ;
 ```
 * 사원테이블에서 14000번을 초과하고 15000보다 작은 사원의 이름을 가져오시오.
 ```
-SELECT emp_no, first_name, last_name
-FROM 	 employees
-WHERE  emp_no BETWEEN 14001 AND 14999
+SELECT	emp_no, first_name, last_name
+FROM 	employees
+WHERE 	emp_no BETWEEN 14001 AND 14999
 ;
 ```
 ```
 SELECT first_name, last_name
-FROM 	 employees
-WHERE  emp_no > 14000
-AND 	 emp_no < 15000
+FROM 	employees
+WHERE  	emp_no > 14000
+AND 	emp_no < 15000
 ;
 ```
 
@@ -118,9 +118,9 @@ FROM 	 employees;
 ```
 ```
 SELECT *
-FROM 	 employees
-WHERE  DATE_FORMAT(hire_date, '%Y%M%D') >= '19850101'
-AND 	 DATE_FORMAT(hire_date, '%Y%M%D') <= '19860101'
+FROM 	employees
+WHERE  	DATE_FORMAT(hire_date, '%Y%M%D') >= '19850101'
+AND 	DATE_FORMAT(hire_date, '%Y%M%D') <= '19860101'
 ;
 ```
 ```
@@ -131,8 +131,8 @@ WHERE	 DATE_FORMAT(hire_date, '%Y%M%D') BETWEEN '19850101' AND '19860101'
 ```
 ```
 SELECT *
-FROM 	 employees
-WHERE  hire_date BETWEEN '1985-01-01' AND '1986-01-01'
+FROM 	employees
+WHERE  	hire_date BETWEEN '1985-01-01' AND '1986-01-01'
 ;
 ```
 #### 나온 결과를 정렬을 해서 확인해보자.
@@ -145,15 +145,15 @@ WHERE  hire_date BETWEEN '1985-01-01' AND '1986-01-01'
 
 ```
 SELECT	*
-FROM 		employees
-WHERE	 	DATE_FORMAT(hire_date, '%Y%M%D') BETWEEN '19850101' AND '19860101'
+FROM 	 employees
+WHERE	 DATE_FORMAT(hire_date, '%Y%M%D') BETWEEN '19850101' AND '19860101'
 ORDER BY hire_date DESC
 ;
 ```
 ```
 SELECT 	*
-FROM 	 	employees
-WHERE  	hire_date BETWEEN '1985-01-01' AND '1986-01-01'
+FROM 	 employees
+WHERE  	 hire_date BETWEEN '1985-01-01' AND '1986-01-01'
 ORDER BY hire_date DESC
 ;
 ```
@@ -163,8 +163,8 @@ SELECT * FROM employees WHERE DATE_FORMAT(hire_date, '%Y%m%d') = '19860101';
 * 입사년도가 1990년인 사원의 정보를 출력해 주세요.
 ```
 SELECT *
-FROM 	 employees
-WHERE  DATE_FORMAT(hire_date, '%Y') = '1990'
+FROM 	employees
+WHERE  	DATE_FORMAT(hire_date, '%Y') = '1990'
 ;
 ```
 ### OR 연산자
@@ -175,9 +175,9 @@ WHERE  DATE_FORMAT(hire_date, '%Y') = '1990'
  
 ```
 SELECT *
-FROM 	 employees
-WHERE  last_name = 'Facello'
-OR  	 last_name = 'Genin'
+FROM 	employees
+WHERE  	last_name = 'Facello'
+OR  	last_name = 'Genin'
 ;
 ```
 ### IN 연산자
@@ -190,8 +190,8 @@ OR  	 last_name = 'Genin'
 A값 또는 B값을 만족하는 데이터를 가져온다.
 ```
 SELECT *
-FROM 	 employees
-WHERE  last_name IN('Genin', 'Facello')
+FROM 	employees
+WHERE  	last_name IN('Genin', 'Facello')
 ;
 ```
 #### Alias(별칭)
@@ -208,15 +208,15 @@ WHERE	 last_name IN ('Genin', 'Facello')
 ```
 ```
 SELECT	hire_date AS 입사년도
-FROM 		employees
-WHERE	 	DATE_FORMAT(hire_date, '%Y%M%D') BETWEEN '19850101' AND '19860101'
+FROM 	 employees
+WHERE	 DATE_FORMAT(hire_date, '%Y%M%D') BETWEEN '19850101' AND '19860101'
 ORDER BY hire_date DESC
 ;
 ```
 ```
 SELECT	emp.hire_date
-FROM 		employees emp
-WHERE	 	DATE_FORMAT(hire_date, '%Y%M%D') BETWEEN '19850101' AND '19860101'
+FROM 	 employees emp
+WHERE	 DATE_FORMAT(hire_date, '%Y%M%D') BETWEEN '19850101' AND '19860101'
 ORDER BY emp.hire_date DESC
 ;
 ```
@@ -235,20 +235,20 @@ ORDER BY emp.hire_date DESC
 
 ```
 SELECT	*
-FROM	 	board
-WHERE		id = '%jisun%'
-OR			title = 'icecream%'
+FROM	board
+WHERE	id = '%jisun%'
+OR	title = 'icecream%'
 ;
 ```
 ```
 SELECT	*
-FROM	 	employees
-WHERE	 	first_name LIKE 's%'
+FROM	employees
+WHERE	first_name LIKE 's%'
 ;
 ```
 ```
 SELECT 	*
-FROM 		employees
+FROM 	employees
 WHERE 	first_name LIKE 'Staff___'
 ;
 ```
@@ -256,23 +256,23 @@ WHERE 	first_name LIKE 'Staff___'
 * 사원중에 직위가 'Engineer'와 'Senior Engineer'인 사원의 사번을 출력해보세요.
 ```
 SELECT	*
-FROM		titles
-WHERE		title IN('Engineer','Senior Engineer')
+FROM	titles
+WHERE	title IN('Engineer','Senior Engineer')
 ;
 ```
 
 * 사원중에서 직무가 'Engineer'로 끝나는 사람과 직무가 'Staff'로 끝나는 사람의 사번을 출력해 주세요.
 ```
 SELECT	*
-FROM		titles
-WHERE		title LIKE '%Engineer' 
-OR 		title LIKE '%Staff'
+FROM	titles
+WHERE	title LIKE '%Engineer' 
+OR 	title LIKE '%Staff'
 ;
 ```
 ```
--- SELECT	emp_no, title
+-- SELECT 	emp_no, title
 -- FROM		titles
--- WHERE		title IN('Engineer', 'Staff')
+-- WHERE	title IN('Engineer', 'Staff')
 -- AND		title = 'Engineer'
 -- AND		title = 'Staff'
 -- ;
@@ -287,29 +287,29 @@ OR 		title LIKE '%Staff'
 * 사원중에서 salary가 NULL이 아닌 사원의 정보를 가져와 보자.
 
 ```
-SELECT	*
-FROM		salaries
-WHERE 	salary IS NOT NULL
-ORDER BY	salary DESC
+SELECT	 *
+FROM	 salaries
+WHERE 	 salary IS NOT NULL
+ORDER BY salary DESC
 ;
 ```
 ```
 SELECT	*
-FROM 		salaries
+FROM 	salaries
 WHERE 	salary IS NULL
 ;
 ```
 * 직무가 'Development' 이거나 'Sales'인 사원들 중에서 1992년 01월 01일 이후에 부서배치가 된 사원의 사번을 구해봅시다.
 ```
 SELECT	dept_no
-FROM		departments
-WHERE		dept_name IN('Development', 'Sales')
+FROM	departments
+WHERE	dept_name IN('Development', 'Sales')
 ;
 ```
 dept_no = d005, d007
 ```
 SELECT 	emp_no
-FROM		dept_emp
+FROM	dept_emp
 WHERE 	dept_no IN ('d005', 'd007')
 ;
 ```
@@ -357,14 +357,14 @@ WHERE		dept_no IN('d004', 'd002')
 
 * 입사년도 별로 사원의 수를 출력하는 쿼리문을 작성해보세요.
 ```
-SELECT	DATE_FORMAT(hire_date, '%Y'), COUNT(*) AS 사원수
+SELECT		DATE_FORMAT(hire_date, '%Y'), COUNT(*) AS 사원수
 FROM		employees
 GROUP BY	DATE_FORMAT(hire_date, '%Y')
 ;
 ```
 * 1999년 입사자를 월별로 몇명이 입사했는지 출력해 보세요.
 ```
-SELECT	DATE_FORMAT(hire_date, '%m'), COUNT(*)
+SELECT		DATE_FORMAT(hire_date, '%m'), COUNT(*)
 FROM		employees
 WHERE		DATE_FORMAT(hire_date, '%Y') ='1999'
 GROUP BY	DATE_FORMAT(hire_date, '%m')
@@ -382,51 +382,51 @@ FROM 	hr_employees
 * 사원들의 연봉의 평균을 구해봅시다.
 ```
 SELECT	AVG(salary)
-FROM		hr_employees
+FROM	hr_employees
 ;
 ```
 * 영업이나 마케팅 업무를 하는 사원을 대상으로 직무별 평균급여를 계산해 보세요.
 직무 : job_ID
 영업 : SA~ , 마케팅 : MK~
 ```
-SELECT	job_ID, AVG(salary)
+SELECT		job_ID, AVG(salary)
 FROM		hr_employees
 WHERE		job_ID LIKE 'SA%'
 OR 		job_ID LIKE 'MK%'
-GROUP BY job_ID
+GROUP BY 	job_ID
 ;
 ```
 -- 2000년 이후 입사자 중에서 재고업무를 담당하는 사원들의 정보를 조회해 보세요.
 -- 재고업무 : ST_MAN, ST_CLERK
 ```
-SELECT	*
+SELECT		*
 FROM 		hr_employees
-WHERE 	job_id IN('ST_MAN','ST_CLERK')
+WHERE 		job_id IN('ST_MAN','ST_CLERK')
 AND 		DATE_FORMAT(hire_date, '%Y') >= '2000'
 ;
 ```
 -- 1994년 6월부터 1998년 4월 기간 입사한 사원을 대상으로 부서별 인원수를 얻어보세요.
 -- 결과는 인원수가 많은 순서로 출력하세요.
 ```
-SELECT 	job_id, COUNT(*) 사원수
+SELECT 		job_id, COUNT(*) 사원수
 FROM		hr_employees
-WHERE 	DATE_FORMAT(hire_date, '%Y%m') >='199406'
+WHERE 		DATE_FORMAT(hire_date, '%Y%m') >='199406'
 AND		DATE_FORMAT(hire_date, '%Y%m') <='199804'
 GROUP BY	job_id
-ORDER BY COUNT(*) DESC
+ORDER BY 	COUNT(*) DESC
 ;
 ```
 ```
-SELECT 	job_id, COUNT(*)
+SELECT 		job_id, COUNT(*)
 FROM		hr_employees
-WHERE 	DATE_FORMAT(hire_date, '%Y%m') BETWEEN '199406' AND '199804'
+WHERE 		DATE_FORMAT(hire_date, '%Y%m') BETWEEN '199406' AND '199804'
 GROUP BY	job_id
-ORDER BY COUNT(*) DESC
+ORDER BY 	COUNT(*) DESC
 ;
 ```
 -- 급여가 5000$ 미만인 사원 중에서 직무가 'IT_PROG'인 사원들의 정보를 조회해 보자.
 ```
-SELECT 	*
+SELECT 		*
 FROM		hr_employees
 WHERE		job_id = 'IT_PROG'
 AND 		salary < 5000
@@ -447,14 +447,14 @@ SELECT MOD(2,0);
 
 -- 짝수년도에 입사한 사원의 정보를 출력해보자.
 ```
-SELECT	*
+SELECT		*
 FROM		hr_employees
 WHERE		MOD(DATE_FORMAT(hire_date, '%Y'),2) = 0
 ;
 ```
 -- 홀수년도에 입사한 사원의 정보를 출력해보자.
 ```
-SELECT	*
+SELECT		*
 FROM		hr_employees
 WHERE		MOD(DATE_FORMAT(hire_date, '%Y'),2) = 1
 ;
@@ -474,8 +474,8 @@ GROUP BY	MOD(DATE_FORMAT(hire_date, '%Y'),2)
 -- END as <표현하고자 하는 필드명을 적어준다.>
 ```
 SELECT	 CASE MOD(DATE_FORMAT(hire_date, '%Y'),2)
-	 WHEN 0 THEN '짝수년도'
-	 WHEN 1 THEN '홀수년도'
+	  WHEN 0 THEN '짝수년도'
+	  WHEN 1 THEN '홀수년도'
 	 END AS '년도',
 	 COUNT(employee_id) AS 사원수
 FROM	 hr_employees
@@ -548,12 +548,12 @@ SELECT DATEDIFF('2020-12-18 13:07:07', '2019-12-18 13:07:07');
 ```
 -- TIMESTAMPDIFF(단위, smallDate1, maxDate2)
 -- 단위
--- 	SECOND : 초
---		MINUTE : 분
--- 	HOUR	 : 시
--- 	DAY	 : 일
--- 	MONTH	 : 월
--- 	YEAR 	 : 년
+-- SECOND : 초
+-- MINUTE : 분
+-- HOUR	 : 시
+-- DAY	 : 일
+-- MONTH	 : 월
+-- YEAR 	 : 년
 ```
 SELECT TIMESTAMPDIFF(YEAR, '2019-12-18 13:07:07', '2022-12-18 13:07:07');
 ```
