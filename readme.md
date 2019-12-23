@@ -19,8 +19,8 @@ FROM 	<TABLE 명>
 ```
 * SELECT = 테이블에서 가져온다. 
 ```
-SELECT *
-FROM 	 employees;
+SELECT 	*
+FROM 	employees;
 ```
 ' * ' = 전체를 의미한다.
 
@@ -50,16 +50,16 @@ WHERE   first_name = 'Elvis'
 ```
 * 사원 테이블에서 성이 'Simmel'인 사람의 정보를 가져와 보자.
 ```
-SELECT *
-FROM 	 employees
-WHERE  last_name = 'Simmel'
+SELECT  *
+FROM 	employees
+WHERE   last_name = 'Simmel'
 ;
 ``` 
 * 사원중에서 사번이 20000번 이하인 사원들의 정보를 출력해보자.
 ```
-SELECT *
-FROM 	 employees
-WHERE  emp_no <= 20000
+SELECT  *
+FROM 	employees
+WHERE   emp_no <= 20000
 ;
 ```
 ##### >= (크거나 같다), < (작다), <= (작거나 같다), <> (같지 않다), != (같지 않다)
@@ -68,7 +68,7 @@ WHERE  emp_no <= 20000
 
 * 사원중에서 사번이 20000번 이상이고, 20100번 이하인 사원들의 이름과 성별을 출력해보자.
 ```
-SELECT emp_no, first_name, gender
+SELECT   emp_no, first_name, gender
 FROM	 employees
 WHERE	 emp_no >= 20000
 AND	 emp_no <= 20100
@@ -117,20 +117,20 @@ SELECT DATE_FORMAT(hire_date, '%Y%M%D')
 FROM 	 employees;
 ```
 ```
-SELECT *
+SELECT  *
 FROM 	employees
 WHERE  	DATE_FORMAT(hire_date, '%Y%M%D') >= '19850101'
 AND 	DATE_FORMAT(hire_date, '%Y%M%D') <= '19860101'
 ;
 ```
 ```
-SELECT *
+SELECT   *
 FROM 	 employees
 WHERE	 DATE_FORMAT(hire_date, '%Y%M%D') BETWEEN '19850101' AND '19860101'
 ;
 ```
 ```
-SELECT *
+SELECT  *
 FROM 	employees
 WHERE  	hire_date BETWEEN '1985-01-01' AND '1986-01-01'
 ;
@@ -144,14 +144,14 @@ WHERE  	hire_date BETWEEN '1985-01-01' AND '1986-01-01'
 * 최근에 입사한 입사자가 맨위로 오도록 출력해 보세요.
 
 ```
-SELECT	*
+SELECT	 *
 FROM 	 employees
 WHERE	 DATE_FORMAT(hire_date, '%Y%M%D') BETWEEN '19850101' AND '19860101'
 ORDER BY hire_date DESC
 ;
 ```
 ```
-SELECT 	*
+SELECT 	 *
 FROM 	 employees
 WHERE  	 hire_date BETWEEN '1985-01-01' AND '1986-01-01'
 ORDER BY hire_date DESC
@@ -162,7 +162,7 @@ SELECT * FROM employees WHERE DATE_FORMAT(hire_date, '%Y%m%d') = '19860101';
 ```
 * 입사년도가 1990년인 사원의 정보를 출력해 주세요.
 ```
-SELECT *
+SELECT  *
 FROM 	employees
 WHERE  	DATE_FORMAT(hire_date, '%Y') = '1990'
 ;
@@ -174,7 +174,7 @@ WHERE  	DATE_FORMAT(hire_date, '%Y') = '1990'
 * 사원들 중에서 성이 'Genin'이거나 'Facello'인 사원의 정보를 출력해보자.
  
 ```
-SELECT *
+SELECT  *
 FROM 	employees
 WHERE  	last_name = 'Facello'
 OR  	last_name = 'Genin'
@@ -189,7 +189,7 @@ OR  	last_name = 'Genin'
 ```
 A값 또는 B값을 만족하는 데이터를 가져온다.
 ```
-SELECT *
+SELECT  *
 FROM 	employees
 WHERE  	last_name IN('Genin', 'Facello')
 ;
