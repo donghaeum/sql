@@ -14,8 +14,8 @@ USE employees;
 ```
 * 기본적인 쿼리문을 사용해보자.
 ```
-SELECT <FIELD명>, <FIELD 명>, ...
-FROM 	 <TABLE 명>
+SELECT 	<FIELD명>, <FIELD 명>, ...
+FROM 	<TABLE 명>
 ```
 * SELECT = 테이블에서 가져온다. 
 ```
