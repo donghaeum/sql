@@ -33,8 +33,8 @@ SHOW TABLES;
 
 * 사원 테이블에서 사원들의 이름만 가져와 보자.
 ```
-SELECT first_name, last_name
-FROM 	 employees;
+SELECT 	first_name, last_name
+FROM 	employees;
 ```
 ### WHERE 절
 
@@ -43,9 +43,9 @@ FROM 	 employees;
 * 사원 테이블에서 이름이 'Elvis'인 사람의 정보를 가져와 보자.
 
 ```where
-SELECT *
-FROM 	 employees
-WHERE  first_name = 'Elvis'
+SELECT  *
+FROM 	employees
+WHERE   first_name = 'Elvis'
 ;
 ```
 * 사원 테이블에서 성이 'Simmel'인 사람의 정보를 가져와 보자.
