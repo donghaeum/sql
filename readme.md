@@ -639,7 +639,7 @@ GROUP BY case TRUNCATE(MONTH(hire_date)/7,0)
 SELECT TRUNCATE(10.2312345,2);
 SELECT TRUNCATE(10.2312345,0);
 ```
--- TRIM() : 문자열에서 공백이나 특정 문자를 제거한 다음 값을 반환
+### TRIM() : 문자열에서 공백이나 특정 문자를 제거한 다음 값을 반환
 ```
 SELECT TRIM(' test '); -- 바깥 공백제거
 SELECT TRIM(LEADING FROM ' test '); -- 왼쪽 공백제거
@@ -650,8 +650,7 @@ SELECT TRIM(BOTH 'x' FROM 'xxxtestxxx'); -- 양쪽 끝 x제거
 LTRIM(str); -- 왼쪽 공백 제거
 RTRIM(str); -- 오른쪽 공백 제거
 ```
--- 사원의 직무가 'IT_PROG'이면 '프로그래머'로 사원의 직무가 'ST_MAN'이면 '매니저'로
--- 'IT_PROG'나 'ST_MAN'이 아니면 '사원'으로 출력하도록 퀘리문을 작성해 보세요.
+* 사원의 직무가 'IT_PROG'이면 '프로그래머'로 사원의 직무가 'ST_MAN'이면 '매니저'로 'IT_PROG'나 'ST_MAN'이 아니면 '사원'으로 출력하도록 퀘리문을 작성해 보세요.
 ```
 SELECT	*,
 	CASE job_id
@@ -662,26 +661,29 @@ SELECT	*,
 FROM    hr_employees
 ;
 ```
--- if 함수 사용해보기
+### if 함수 사용해보기
+```
 -- IF(조건, 참일때 실행되는 곳, 거짓일때 실행되는 곳)
--- if 와 case문의 차이점
--- 복잡하게 처리해야 하는 부분은 case로 하고
--- 단순하게 처리해야 하는 부분은 if()로 처리하는 것이 좋다.
+```
+if 와 case문의 차이점
+복잡하게 처리해야 하는 부분은 case로 하고
+단순하게 처리해야 하는 부분은 if()로 처리하는 것이 좋다.
+
 ```
 SELECT 	*, if(job_id='IT_PROG','프로그래머',
 	IF(job_id='ST_MAN','매니저','사원')) 직무
 FROM 	hr_employees
 ;
 ```
--- 사원중에서 급여를 가장 많이 받는 사람의 급여는 얼마일까요?
--- MAX(<field명>) : field의 최대값
--- MIN(<field명>) : field의 최솟값
+* 사원중에서 급여를 가장 많이 받는 사람의 급여는 얼마일까요?
+#### MAX(<field명>) : field의 최대값
+#### MIN(<field명>) : field의 최솟값
 ```
 SELECT 	MAX(salary)
 FROM 	hr_employees
 ;
 ```
--- 최고 급여 대비 본인연봉을 확인해 보자.
+* 최고 급여 대비 본인연봉을 확인해 보자.
 ```
 SELECT 	 employee_id,
 	 salary,
@@ -690,7 +692,7 @@ FROM 	 hr_employees
 ORDER BY salary DESC
 ;
 ```
--- 영업 직무를 가진 사원 중에서 가장 최근에 입사한 사원을 찾아보자.
+* 영업 직무를 가진 사원 중에서 가장 최근에 입사한 사원을 찾아보자.
 -- [결과화면]
 -- 사원번호 ㅣ 사원이름 ㅣ 직무
 -- 영업직무 : SA%
@@ -712,8 +714,8 @@ WHERE	job_id LIKE 'SA%'
 AND 	hire_date = (SELECT MAX(hire_date) FROM hr_employees)
 ;
 ```
--- rank() : 순위를 표현할 때 사용하는 함수
--- 영업부서에 속하는 사원들을 대상으로 급여가 적은 순위를 나타내 보세요.
+#### rank() : 순위를 표현할 때 사용하는 함수
+* 영업부서에 속하는 사원들을 대상으로 급여가 적은 순위를 나타내 보세요.
 ```
 SELECT 	employee_id,
 	salary,
@@ -721,7 +723,7 @@ SELECT 	employee_id,
 FROM	hr_employees
 ;
 ```
--- DENSE RANK() : 순위가 동률이라도 건너뛰지 않고 순서를 매겨준다.
+#### DENSE RANK() : 순위가 동률이라도 건너뛰지 않고 순서를 매겨준다.
 ```
 SELECT 	employee_id,
 	salary,
@@ -729,7 +731,7 @@ SELECT 	employee_id,
 FROM	hr_employees
 ;
 ```
--- 입사한지 3년 이상 되는 사원들의 연봉 상위 5명의 정보를 출력해주세요.
+* 입사한지 3년 이상 되는 사원들의 연봉 상위 5명의 정보를 출력해주세요.
 ```
 SELECT 	*
 FROM	(SELECT salary,
@@ -740,7 +742,7 @@ FROM	(SELECT salary,
 WHERE 	RANK <= 5
 ;
 ```
--- 현재 사원들 중에서 입사일이 현재시점과 가장 가까운 순으로 순위를 매겨주세요.
+* 현재 사원들 중에서 입사일이 현재시점과 가장 가까운 순으로 순위를 매겨주세요.
 ```
 SELECT 	employee_id,
 	hire_date,
@@ -751,40 +753,40 @@ FROM	hr_employees
 
 **20191219
 
--- HAVING절 
---  group by로 묶어서 나온 결과에 대한 제한을 두고자 할 때 사용한다.
+### HAVING절 
+group by로 묶어서 나온 결과에 대한 제한을 두고자 할 때 사용한다.
 
--- 직무별 평균 급여를 출력하는데, 평균 급여가 10,000$이상인 경우를
--- 제외해 보자.
+* 직무별 평균 급여를 출력하는데, 평균 급여가 10,000$이상인 경우를 제외해 보자.
+```
 SELECT   job_id
          ,AVG(salary) AS salary
 FROM     hr_employees
 GROUP BY job_id
 HAVING   AVG(salary) <= 10000
 ;
-
--- 1997년에 입사한 사람들의 수를 분기별로 몇명인지 출력하시오.
+```
+* 1997년에 입사한 사람들의 수를 분기별로 몇명인지 출력하시오.
 -- [결과화면]
 --  분기  | 사원수 
 --  1분기 |  20
 --  2분기 |  30
 --  ...
-
+```
 SELECT COUNT(*)
 FROM   hr_employees
 WHERE  YEAR(hire_date) = '1997'
 ;
-
+```
 -- 1분기 2분기 3분기 4분기 
 -- 123   456   789   101112
 -- 001   112   223   334
 -- 111   222   333   444
--- ceil(<field명>) : 올림, 소수점이하에 값이 있으면 값을 올려주는 함수
-
+#### ceil(<field명>) : 올림, 소수점이하에 값이 있으면 값을 올려주는 함수
+```
 SELECT CEIL(0.2343242);
 SELECT CEIL(2/3);
-
-
+```
+```
 SELECT   CASE ceil(MONTH(hire_date)/3)
           WHEN 1 THEN '1분기'
           WHEN 2 THEN '2분기'
@@ -796,21 +798,26 @@ FROM     hr_employees
 WHERE    YEAR(hire_date) = '1997'
 GROUP BY ceil(MONTH(hire_date)/3)
 ;
--- QUARTER() 똑같은 결과물 출력해보기
-
+```
+#### QUARTER() 똑같은 결과물 출력해보기
+```
 -- JOIN : 두 개이상의 테이블에서 조건을 만족하는 데이터를 추출하는 방법
 -- INNER JOIN : 해당하는 조건에 만족하는 데이터만 추출하는 방법
 -- OUTER JOIN : 해당하는 조건에 만족하지 않는 데이터까지도 추출하는 방법
+```
 
--- 사원번호가 100번인 사원의 부서를 출력하시오.
+* 사원번호가 100번인 사원의 부서를 출력하시오.
+```
 SELECT *
 FROM   hr_employees
 WHERE  employee_id = 100
 ;
-
+```
+```
 SELECT * FROM hr_departments;
-
--- inner join 명시적
+```
+#### inner join 명시적
+```
 SELECT  emp.EMPLOYEE_ID,
         emp.LAST_NAME,
         dept.DEPARTMENT_NAME,
@@ -818,8 +825,9 @@ SELECT  emp.EMPLOYEE_ID,
 FROM    hr_employees emp INNER JOIN hr_departments dept
 ON      emp.DEPARTMENT_ID = dept.DEPARTMENT_ID
 WHERE   emp.EMPLOYEE_ID = 100;
-
--- inner join 암시적
+```
+#### inner join 암시적
+```
 SELECT  emp.EMPLOYEE_ID,
         emp.LAST_NAME,
         dept.DEPARTMENT_NAME,
@@ -827,24 +835,29 @@ SELECT  emp.EMPLOYEE_ID,
 FROM    hr_employees emp, hr_departments dept
 WHERE   emp.DEPARTMENT_ID = dept.DEPARTMENT_ID
 AND     emp.EMPLOYEE_ID = 100;
-
-
+```
+```
 SELECT * FROM hr_employees;
--- 매니저 ID가 있는 사원의 정보를 출력해주세요. 
+```
+* 매니저 ID가 있는 사원의 정보를 출력해주세요. 
+```
 SELECT *
 FROM   hr_employees emp, hr_departments dept
 WHERE  emp.MANAGER_ID = dept.MANAGER_ID
 ;
-
+```
+```
 SELECT * FROM hr_departments;
-
+```
+```
 SELECT *
 FROM   hr_employees
 WHERE  manager_id IS NOT NULL
 ;
-
--- outer join 
--- 매니저 ID가 없는 사원의 정보까지도 가져와 봅시다.
+```
+#### outer join 
+* 매니저 ID가 없는 사원의 정보까지도 가져와 봅시다.
+```
 SELECT emp.EMPLOYEE_ID,
        emp.LAST_NAME,
        dept.MANAGER_ID,
@@ -852,7 +865,8 @@ SELECT emp.EMPLOYEE_ID,
 FROM   hr_employees emp LEFT OUTER JOIN hr_departments dept
 ON     emp.DEPARTMENT_ID = dept.DEPARTMENT_ID
 ;
-
+```
+```
 SELECT emp.EMPLOYEE_ID,
        emp.LAST_NAME,
        dept.MANAGER_ID,
@@ -860,7 +874,8 @@ SELECT emp.EMPLOYEE_ID,
 FROM   hr_departments dept RIGHT OUTER JOIN hr_employees emp
 ON     emp.DEPARTMENT_ID = dept.DEPARTMENT_ID
 ;
-
+```
+```
 SELECT emp.EMPLOYEE_ID,
        emp.LAST_NAME,
        dept.MANAGER_ID,
@@ -868,14 +883,16 @@ SELECT emp.EMPLOYEE_ID,
 FROM   hr_departments dept LEFT OUTER JOIN hr_employees emp
 ON     emp.DEPARTMENT_ID = dept.DEPARTMENT_ID
 ;
-
--- King이라는 사원이 소속된 부서의 위치 정보를 얻어보자.
+```
+* King이라는 사원이 소속된 부서의 위치 정보를 얻어보자.
 -- [결과화면]
 -- 사원번호 | 부서이름 | 도시
+```
 SELECT * FROM hr_locations;
 SELECT * FROM hr_departments;
 SELECT * FROM hr_employees;
-
+```
+```
 SELECT emp.EMPLOYEE_ID,
        dept.DEPARTMENT_NAME,
        loc.CITY
@@ -884,8 +901,10 @@ WHERE  emp.DEPARTMENT_ID = dept.DEPARTMENT_ID
 AND    dept.LOCATION_ID = loc.LOCATION_ID
 AND    emp.last_name = 'King'
 ;
+```
 
--- 표준 , join, ansi sql
+#### 표준 , join, ansi sql
+```
 SELECT emp.EMPLOYEE_ID,
        dept.DEPARTMENT_NAME,
        loc.CITY
@@ -895,10 +914,10 @@ JOIN   hr_locations loc
 ON     dept.LOCATION_ID = loc.LOCATION_ID
 WHERE  emp.last_name = 'King'
 ;
-
--- 도시별로 근무하는 사원의 수가 5명 이상인 경우를 얻어보자. 
--- 인원이 많은 도시 순으로 정렬해서 나타내 보자.
-
+```
+* 도시별로 근무하는 사원의 수가 5명 이상인 경우를 얻어보자. 
+인원이 많은 도시 순으로 정렬해서 나타내 보자.
+```
 SELECT   loc.CITY AS '도시이름', 
          COUNT(emp.employee_id) AS '사원수'
 FROM     hr_locations loc, hr_employees emp, hr_departments dept
@@ -908,15 +927,18 @@ GROUP BY loc.CITY
 HAVING   사원수 >= 5
 ORDER BY 사원수 DESC
 ;
---ORDER BY COUNT(emp.employee_id) DESC
---HAVING   COUNT(emp.employee_id) >= 5; 
-
--- 영업관련 직무를 가진 사원들의 정보를 얻어보자.
--- 부서 발령을 받지 않는 사원도 포함해서 나타내 보자.
+```
+```
+ORDER BY COUNT(emp.employee_id) DESC
+HAVING   COUNT(emp.employee_id) >= 5; 
+```
+* 영업관련 직무를 가진 사원들의 정보를 얻어보자.
+부서 발령을 받지 않는 사원도 포함해서 나타내 보자.
 -- ( outer join ) 
 -- 영업관련 직무 : job_id = SA_REP, SA_MAN
 -- [결과]
 -- 사원번호 | 이름(last_name) | 부서이름
+```
 SELECT  emp.EMPLOYEE_ID AS 사원번호,
         emp.LAST_NAME AS 이름,
         dept.DEPARTMENT_NAME AS 부서이름
@@ -924,13 +946,13 @@ FROM    hr_employees emp LEFT OUTER JOIN hr_departments dept
 ON      emp.DEPARTMENT_ID = dept.DEPARTMENT_ID
 WHERE   emp.JOB_ID IN ('SA_REP','SA_MAN')
 ;
+```
+#### 하위질의 : subquery 
+하나의 SQL문에 두개나 그 이상의 SELECT문이 포함되는 경우 
 
--- 하위질의 : subquery 
--- 하나의 SQL문에 두개나 그 이상의 SELECT문이 포함되는 경우 
-
--- 2000년 이후 입사한 사원 중 대표이사를 제외한 
--- 현재 사원들의 평균급여보다 많이 받는 사원들을 얻어보세요.
+* 2000년 이후 입사한 사원 중 대표이사를 제외한 현재 사원들의 평균급여보다 많이 받는 사원들을 얻어보세요.
 -- 대표이사 job_id = 'AD_PRES'
+```
 SELECT * 
 FROM   hr_employees
 WHERE  salary > (SELECT AVG(salary)
@@ -941,17 +963,20 @@ WHERE  salary > (SELECT AVG(salary)
 AND    YEAR(hire_date) >= 2000
 AND    job_id <> 'AD_PRES'
 ORDER BY salary ASC
-
 ;
+```
+```
 SELECT AVG(salary)
 FROM   hr_employees
 WHERE  job_id <> 'AD_PRES'
 AND    YEAR(hire_date) >= 2000
-      
--- 1999년 상반기에 입사한 사원의 수를 부서별로 출력해보자. 
--- 단, 부서가 없는 사원은 제외한다.( inner join ) 
+;
+```
+* 1999년 상반기에 입사한 사원의 수를 부서별로 출력해보자. 
+단, 부서가 없는 사원은 제외한다.( inner join ) 
 
--- 1 
+1 
+```
 SELECT   department_id,
          hire_date, 
          COUNT(employee_id) AS 사원수
@@ -959,8 +984,9 @@ FROM     hr_employees
 WHERE    YEAR(hire_date) = 1999
 GROUP BY department_id  
 ;
-
---2
+```
+2
+```
 SELECT   dept.department_name,
          COUNT(emp.employee_id) AS 사원수
 FROM     hr_employees emp, hr_departments dept 
@@ -969,21 +995,22 @@ AND      YEAR(emp.hire_date) = 1999
 AND      MONTH(hire_date) < 7
 GROUP BY dept.department_name  
 ;
+```
+```
 -- 123456 789 10 11 12
 -- MONTH(hire_date) < 7 
 -- 000000 111111
-
--- 'Seattle'에 근무하는 사원의 정보를 출력해보자.
--- 
+```
+* 'Seattle'에 근무하는 사원의 정보를 출력해보자.
+```
 SELECT *
 FROM   hr_locations loc, hr_departments dept, hr_employees emp
 WHERE  emp.DEPARTMENT_ID = dept.DEPARTMENT_ID
 AND    dept.LOCATION_ID = loc.LOCATION_ID
 AND    loc.CITY = 'Seattle'
-
--- 'IT_PROG'인 직무를 가진 사원들의 평균급여보다 
---  많이 받는 사원의 정보를 출력해 보자.
-
+```
+* 'IT_PROG'인 직무를 가진 사원들의 평균급여보다 많이 받는 사원의 정보를 출력해 보자.
+```
 SELECT * 
 FROM   hr_employees
 WHERE  salary >(SELECT AVG(salary) AS salary
@@ -992,4 +1019,4 @@ WHERE  salary >(SELECT AVG(salary) AS salary
 AND    job_id != 'IT_PROG'
 ORDER BY salary ASC
 ;
-
+```
