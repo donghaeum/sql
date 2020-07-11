@@ -9,7 +9,7 @@
 ## Employees DB
 
 내가 employees 데이터베이스를 사용하겠다.
-```
+```sql
 USE employees;
 ```
 * 기본적인 쿼리문을 사용해보자.
